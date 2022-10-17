@@ -14,13 +14,13 @@
 
 #define NULL_STRING "(null)"
 
-#define PARAMS_INIT {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define Z_INIT {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
 #define CONVERT_LOWERCASE	1
 #define CONVERT_UNSIGNED	2
 
 /**
- * struct parameters - parameters struct
+ * struct parameters(z) - parameters(z) struct
  *
  * @unsign: flag if unsigned value
  *
@@ -38,7 +38,7 @@
  *
  */
 
-typedef struct parameters
+typedef struct parameters(z)
 {
 	unsigned int unsign			: 1;
 
@@ -53,7 +53,7 @@ typedef struct parameters
 
 	unsigned int h_modifier		: 1;
 	unsigned int l_modifier		: 1;
-} params_t;
+} z_t;
 
 /**
  * struct specifier - Struct token
@@ -64,48 +64,48 @@ typedef struct parameters
 typedef struct specifier
 {
 	char *specifier;
-	int (*f)(va_list, params_t *);
+	int (*f)(va_list, z_t *);
 } specifier_t;
 
 /* _put.c module */
 int _puts(char *str);
 int _putchar(int c);
 
-int print_char(va_list ap, params_t *params);
-int print_int(va_list ap, params_t *params);
-int print_string(va_list ap, params_t *params);
-int print_percent(va_list ap, params_t *params);
-int print_S(va_list ap, params_t *params);
+int print_char(va_list y, z_t *z);
+int print_int(va_list y, z_t *z);
+int print_string(va_list y, z_t *z);
+int print_percent(va_list y, z_t *z);
+int print_S(va_list y, z_t *z);
 
-char *convert(long int num, int base, int flags, params_t *params);
-int print_unsigned(va_list ap, params_t *params);
-int print_address(va_list ap, params_t *params);
+char *convert(long int num, int base, int flags, z_t *z);
+int print_unsigned(va_list y, z_t *z);
+int print_address(va_list y, z_t *z);
 
-int (*get_specifier(char *s))(va_list ap, params_t *params);
-int get_print_func(char *s, va_list ap, params_t *params);
-int get_flag(char *s, params_t *params);
-int get_modifier(char *s, params_t *params);
-char *get_width(char *s, params_t *params, va_list ap);
+int (*get_specifier(char *s))(va_list y, z_t *z);
+int get_print_func(char *s, va_list y, z_t *z);
+int get_flag(char *s, z_t *z);
+int get_modifier(char *s, z_t *z);
+char *get_width(char *s, z_t *z, va_list y);
 
-int print_hex(va_list ap, params_t *params);
-int print_HEX(va_list ap, params_t *params);
-int print_binary(va_list ap, params_t *params);
-int print_octal(va_list ap, params_t *params);
+int print_hex(va_list y, z_t *z);
+int print_HEX(va_list y, z_t *z);
+int print_binary(va_list y, z_t *z);
+int print_octal(va_list y, z_t *z);
 
 int print_from_to(char *start, char *stop, char *except);
-int print_rev(va_list ap, params_t *params);
-int print_rot13(va_list ap, params_t *params);
+int print_rev(va_list y, z_t *z);
+int print_rot13(va_list y, z_t *z);
 
 int _isdigit(int c);
 int _strlen(char *s);
-int print_number(char *str, params_t *params);
-int print_number_right_shift(char *str, params_t *params);
-int print_number_left_shift(char *str, params_t *params);
+int print_number(char *str, z_t *z);
+int print_number_right_shift(char *str, z_t *z);
+int print_number_left_shift(char *str, z_t *z);
 
 
-void init_params(params_t *params, va_list ap);
+void init_z(z_t *z, va_list y);
 
-char *get_precision(char *p, params_t *params, va_list ap);
+char *get_precision(char *p, z_t *z, va_list y);
 
 int _printf(const char *format, ...);
 

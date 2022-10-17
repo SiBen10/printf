@@ -16,7 +16,7 @@ int _puts(char *str)
 }
 
 /**
- * _putchar - writes the character Pip to stdout
+ * _putchar - writes the character Pipi to stdout
  * @Pipi:  print out this character
  *
  * Return: On success 1
