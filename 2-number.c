@@ -2,44 +2,44 @@
 
 /**
  * print_from_to - prints a range of char addresses
- * @A: starting add
- * @Z: stopping add
- * @Pipi: Pipi add
+ * @start: starting address
+ * @stop: stopping address
+ * @except: except address
  *
  * Return: number bytes printed
  */
-int print_from_to(char *A, char *Z, char *Pipi)
+int print_from_to(char *start, char *stop, char *except)
 {
 	int sum = 0;
 
-	while (A <= Z)
+	while (start <= stop)
 	{
-		if (A != Pipi)
-			sum += _putchar(*A);
-		A++;
+		if (start != except)
+			sum += _putchar(*start);
+		start++;
 	}
 	return (sum);
 }
 
 /**
  * print_rev - prints string in reverse
- * @y: string
- * @z: the parameters struct
+ * @ap: string
+ * @params: the parameters struct
  *
- * Return: success 1
+ * Return: number bytes printed
  */
-int print_rev(va_list y, z_t *z)
+int print_rev(va_list ap, params_t *params)
 {
-	int ben, sum = 0;
-	char *str = va_arg(y, char *);
-	(void)z;
+	int len, sum = 0;
+	char *str = va_arg(ap, char *);
+	(void)params;
 
 	if (str)
 	{
-		for (ben = 0; *str; str++)
-			ben++;
+		for (len = 0; *str; str++)
+			len++;
 		str--;
-		for (; ben > 0; ben--, str--)
+		for (; len > 0; len--, str--)
 			sum += _putchar(*str);
 	}
 	return (sum);
@@ -47,29 +47,29 @@ int print_rev(va_list y, z_t *z)
 
 /**
  * print_rot13 - prints string in rot13
- * @y: string
- * @z: the parameters(z) struct
+ * @ap: string
+ * @params: the parameters struct
  *
- * Return: success 1
+ * Return: number bytes printed
  */
-int print_rot13(va_list y, z_t *z)
+int print_rot13(va_list ap, params_t *params)
 {
-	int i, ben;
+	int i, index;
 	int count = 0;
 	char arr[] =
-		"ABCDEFGHIJKLMNOPQRSTUVWXYZ      abcdefghijklmnopqrstuvwxyz";
-	char *a = va_arg(y, char *);
-	(void)z;
+		"NOPQRSTUVWXYZABCDEFGHIJKLM      nopqrstuvwxyzabcdefghijklm";
+	char *a = va_arg(ap, char *);
+	(void)params;
 
 	i = 0;
-	ben = 0;
+	index = 0;
 	while (a[i])
 	{
 		if ((a[i] >= 'A' && a[i] <= 'Z')
 		    || (a[i] >= 'a' && a[i] <= 'z'))
 		{
-			ben = a[i] - 65;
-			count += _putchar(arr[ben]);
+			index = a[i] - 65;
+			count += _putchar(arr[index]);
 		}
 		else
 			count += _putchar(a[i]);
