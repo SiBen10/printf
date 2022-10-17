@@ -16,22 +16,23 @@ int _puts(char *str)
 }
 
 /**
- * _putchar - writes the character Pipi to stdout
- * @Pipi:  print out this character
+ * _putchar - writes the character c to stdout
+ * @ben: The character to print
  *
- * Return: On success 1
+ * Return: On success 1.
+ * On error, -1 is returned, and error is set appropriately.
  */
-int _putchar(int Pipi)
+int _putchar(int ben)
 {
 	static int i;
 	static char buf[OUTPUT_BUF_SIZE];
 
-	if (Pipi == BUF_FLUSH || i >= OUTPUT_BUF_SIZE)
+	if (ben == BUF_FLUSH || i >= OUTPUT_BUF_SIZE)
 	{
 		write(1, buf, i);
 		i = 0;
 	}
-	if (Pipi != BUF_FLUSH)
-		buf[i++] = Pipi;
+	if (ben != BUF_FLUSH)
+		buf[i++] = ben;
 	return (1);
 }
